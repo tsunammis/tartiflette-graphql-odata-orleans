@@ -1,9 +1,23 @@
 type Query {
   mobility: Mobility
+  orleans: Orleans
 }
 
 type Mobility {
-  parkings(offset: Int, limit: Int): [Parking]
+  parkings(offset: Int, limit: Int, query: String): [Parking]
+  tramStations(offset: Int, limit: Int, query: String): [TramStation]
+}
+
+type Orleans {
+  cantons(offset: Int, limit: Int): [Canton]
+  towns(offset: Int, limit: Int): [Town]
+  districts(offset: Int, limit: Int, query: String): [District]
+  townHalls(offset: Int, limit: Int, query: String): [TownHall]
+}
+
+type Location {
+  latitude: Float
+  longitude: Float
 }
 
 type Parking {
@@ -18,7 +32,35 @@ type ParkingSpace {
   currentlyAvailable: Int
 }
 
-type Location {
-  latitude: Float
-  longitude: Float
+type TramStation {
+  id: String
+  name: String
+  line: String
+  location: Location
+}
+
+type Canton {
+  id: String
+  name: String
+  district: String
+  location: Location
+}
+
+type Town {
+  id: String
+  name: String
+  location: Location
+}
+
+type District {
+  id: String
+  name: String
+  wording: String
+  location: Location
+}
+
+type TownHall {
+  id: String
+  name: String
+  location: Location
 }

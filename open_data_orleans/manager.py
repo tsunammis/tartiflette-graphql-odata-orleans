@@ -139,3 +139,20 @@ async def fetch_orleans_townhalls(query=None, redis=None, offset=None, limit=Non
             json_body = await r.json()
 
     return json_body
+
+
+@cache("public_events", segmentation_keys=["query", "offset", "limit"])
+async def fetch_public_events(query=None, redis=None, offset=None, limit=None):
+    url = f"{_API_BASE_URL}/api/records/1.0/search/?dataset=evenements-publics-openagenda&facet=tags&facet=placename&facet=department&facet=region&facet=city&facet=date_start&facet=date_end&facet=pricing_info&facet=updated_at&facet=city_district&refine.date_start=2019"
+    if query:
+        url += f"&q={query}"
+    if offset:
+        url += f"&start={offset}"
+    if limit:
+        url += f"&rows={limit}"
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as r:
+            json_body = await r.json()
+
+    return json_body

@@ -1,6 +1,7 @@
 type Query {
   mobility: Mobility
   orleans: Orleans
+  publicEvents(offset: Int, limit: Int, query: String): [PublicEvent]
 }
 
 type Mobility {
@@ -63,4 +64,22 @@ type TownHall {
   id: String
   name: String
   location: Location
+}
+
+type PublicEventPlace {
+  address: String
+  department: String
+  city: String
+  name: String
+  region: String
+}
+
+type PublicEvent {
+  id: String
+  lang: String
+  name: String
+  location: Location
+  dateStart: String
+  dateEnd: String
+  place: PublicEventPlace
 }

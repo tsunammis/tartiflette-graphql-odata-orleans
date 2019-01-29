@@ -8,6 +8,7 @@ from open_data_orleans.manager import fetch_orleans_cantons
 from open_data_orleans.manager import fetch_orleans_towns
 from open_data_orleans.manager import fetch_orleans_districts
 from open_data_orleans.manager import fetch_orleans_townhalls
+from open_data_orleans.manager import fetch_public_events
 from open_data_orleans.transformers.orleans_metropole import transform_to_graph
 
 
@@ -79,3 +80,15 @@ async def resolver_orleans_townhalls(parent, args, ctx, info):
     )
 
     return transform_to_graph(orleans_townhalls)
+    
+
+@Resolver("Query.publicEvents")
+async def resolver_public_events(parent, args, ctx, info):
+    public_events = await fetch_public_events(
+        redis = ctx["app"]["redis"],
+        query = args.get("query"),
+        offset = args.get("offset"),
+        limit = args.get("limit"),
+    )
+
+    return transform_to_graph(public_events)

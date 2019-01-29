@@ -24,6 +24,8 @@ def apply_transformer(item):
         return orleans_districts_transformer(item)
     elif item["datasetid"] == "administratif_adm_mairie_quartier":
         return orleans_townhalls_transformer(item)
+    elif item["datasetid"] == "evenements-publics-openagenda":
+        return public_events_transformer(item)
 
     raise Exception(f"datasetid {item['datasetid']} not supported")
 
@@ -97,5 +99,26 @@ def orleans_townhalls_transformer(item):
         "location": {
             "latitude": item["fields"]["geo_point_2d"][0],
             "longitude": item["fields"]["geo_point_2d"][1]
+        }
+    }
+
+
+def public_events_transformer(item):
+    return {
+        "id": item["recordid"],
+        "lang": item["fields"]["lang"],
+        "name": item["fields"]["title"],
+        "place": {
+            "address": item["fields"]["address"],
+            "department": item["fields"]["department"],
+            "city": item["fields"]["city"],
+            "name": item["fields"]["placename"],
+            "region": item["fields"]["region"],
+        },
+        "dateStart": item["fields"]["date_start"],
+        "dateEnd": item["fields"]["date_end"],
+        "location": {
+            "latitude": item["fields"]["latlon"][0],
+            "longitude": item["fields"]["latlon"][1]
         }
     }

@@ -9,7 +9,7 @@ import open_data_orleans.resolvers
 
 
 engine = Engine(
-    os.path.dirname(os.path.abspath(__file__)) + "/sdl/default.gql"
+    os.path.dirname(os.path.abspath(__file__)) + "/sdl/default.graphql"
 )
 
 

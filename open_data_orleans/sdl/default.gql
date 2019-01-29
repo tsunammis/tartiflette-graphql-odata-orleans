@@ -1,0 +1,24 @@
+type Query {
+  mobility: Mobility
+}
+
+type Mobility {
+  parkings(offset: Int, limit: Int): [Parking]
+}
+
+type Parking {
+  id: String
+  name: String
+  location: Location
+  parkingSpace: ParkingSpace
+}
+
+type ParkingSpace {
+  total: Int
+  currentlyAvailable: Int
+}
+
+type Location {
+  latitude: Float
+  longitude: Float
+}

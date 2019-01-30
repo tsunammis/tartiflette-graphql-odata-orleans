@@ -202,13 +202,6 @@
             ],
             "version": "==2018.9"
         },
-        "tartiflette": {
-            "hashes": [
-                "sha256:45e46602ae9c04a70997b18cfbb6840293b9b4a9db69fa047970bedf26590183"
-            ],
-            "index": "pypi",
-            "version": "==0.3.4"
-        },
         "tartiflette-aiohttp": {
             "hashes": [
                 "sha256:fbeb2b6e9691908bf613acff2e124999a4635ba657aa4fc6bcff74df52e54aab"

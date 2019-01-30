@@ -39,7 +39,7 @@ def cache(cache_key, segmentation_keys=None, expiration=300):
     return cache_decorator
 
 
-@cache("parking_availabilities", segmentation_keys=["query", "offset", "limit"])
+@cache("parking_availabilities", segmentation_keys=["query", "offset", "limit"], expiration=10)
 async def fetch_parking_availabilities(query=None, redis=None, offset=None, limit=None):
     url = f"{_API_BASE_URL}/api/records/1.0/search/?dataset=mobilite-places-disponibles-parkings-en-temps-reel"
     if query:

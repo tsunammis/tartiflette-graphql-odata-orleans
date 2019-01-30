@@ -1,7 +1,13 @@
+directive @rateLimiting(
+  name: String
+  max_attempts: Int = 10
+  duration: Int = 60
+) on FIELD_DEFINITION
+
 type Query {
   mobility: Mobility
   orleans: Orleans
-  publicEvents(offset: Int, limit: Int, query: String): [PublicEvent]
+  publicEvents(offset: Int, limit: Int, query: String): [PublicEvent] @rateLimiting(name: "public_events")
 }
 
 type Mobility {

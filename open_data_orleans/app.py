@@ -5,11 +5,12 @@ from tartiflette import Engine
 from tartiflette_aiohttp import register_graphql_handlers
 
 from open_data_orleans.aiohttp_utils import on_cleanup, on_startup 
+import open_data_orleans.directives.rate_limiting
 import open_data_orleans.resolvers
 
 
 engine = Engine(
-    os.path.dirname(os.path.abspath(__file__)) + "/sdl/default.graphql"
+    os.path.dirname(os.path.abspath(__file__)) + "/sdl"
 )
 
 
